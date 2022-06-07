@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/user")
-@Api(tags="用户管理")
+@Api(tags="用户管理Swagger演示文档")
 public class UserController {
 
 	Logger logger = LoggerFactory.getLogger(UserController.class);

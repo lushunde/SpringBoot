@@ -7,7 +7,9 @@ import java.io.Serializable;
 
 /**
  * @ClassName R
- * @Description 返回统一样式定义   如果result=1，则可以直接解析 data 数据（code和）
+ * @Description 返回统一样式定义
+ *          如果result=1，则可以直接解析 data 数据（code和message 不重要）
+ *          如果result=2，则可以直接解析 code 和展示message信息  （data字段不重要）
  * @Author bellus
  * @Date 2022/6/8 16:42
  * @Version 1.0.0

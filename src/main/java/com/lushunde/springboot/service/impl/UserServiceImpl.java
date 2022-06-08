@@ -21,7 +21,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User queryUserByUserId(Integer userId) {
+    public User queryUserByUserId(Integer userId) throws Exception {
+
         return userMapper.selectByPrimaryKey(userId);
     }
 }

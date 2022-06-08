@@ -1,7 +1,9 @@
 package com.lushunde.springboot.controller;
 
+import com.lushunde.springboot.config.constant.ExceptionEnum;
+import com.lushunde.springboot.config.exception.BusinException;
 import com.lushunde.springboot.model.User;
-import com.lushunde.springboot.model.result.R;
+import com.lushunde.springboot.config.result.R;
 import com.lushunde.springboot.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,17 +33,30 @@ public class UserController {
 
     @PostMapping(value = "queryUserByUserId")
     @ApiOperation(value = "根据主键获取用户信息")
-    public R<User> queryUserByUserId(Integer userId){
+    public R<User> queryUserByUserId(Integer userId) throws BusinException {
        try{
            User user = this.userService.queryUserByUserId(userId);
-
            return R.ok().data(user);
        }catch (Exception e) {
-           log.error("{}",e);
-
-           return R.error();
+           throw BusinException.newInstance(ExceptionEnum.INTERNAL_SERVER_ERROR, e).log(log);
 
        }
+
+    }
+
+
+    @PostMapping(value = "queryException")
+    @ApiOperation(value = "根据异常捕获")
+    public R<User> queryException(Integer userId) throws BusinException {
+        try{
+
+            userId = 1/userId;
+
+            return R.ok().data(userId);
+        }catch (Exception e) {
+            throw BusinException.newInstance(ExceptionEnum.INTERNAL_SERVER_ERROR, e).log(log);
+
+        }
 
     }
 

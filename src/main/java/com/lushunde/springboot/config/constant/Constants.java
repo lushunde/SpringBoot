@@ -1,4 +1,4 @@
-package com.lushunde.springboot.constant;
+package com.lushunde.springboot.config.constant;
 
 /**
  * @ClassName Constants

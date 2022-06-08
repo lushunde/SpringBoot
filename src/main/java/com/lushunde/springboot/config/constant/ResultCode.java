@@ -1,4 +1,4 @@
-package com.lushunde.springboot.constant;
+package com.lushunde.springboot.config.constant;
 
 /**
  * @ClassName ResultCode
@@ -10,10 +10,11 @@ package com.lushunde.springboot.constant;
 
 
 public enum ResultCode {
-    SUCCESS(200000,"成功"),
-    ERROR_UNKNOWN(500000,"未知错误"),
-    ERROR_PARAM(400000,"参数错误"),
-    ERROR_AUTH(401000,"身份认证失败")
+    SUCCESS(200,"成功"),
+    ERROR_UNKNOWN(600,"未知错误"),
+    ERROR_INTERNAL_SERVER(500, "服务器内部错误!"),
+    ERROR_PARAM(400,"参数错误"),
+    ERROR_AUTH(401,"身份认证失败")
     ;
 
 

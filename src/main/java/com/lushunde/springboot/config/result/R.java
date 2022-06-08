@@ -1,7 +1,9 @@
-package com.lushunde.springboot.model.result;
+package com.lushunde.springboot.config.result;
 
 
-import com.lushunde.springboot.constant.ResultCode;
+import com.lushunde.springboot.config.constant.ResultCode;
+import com.lushunde.springboot.config.exception.BusinException;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 
@@ -42,6 +44,16 @@ public class R<T> implements Serializable {
         return r;
     }
 
+    // 通用返回成功
+    public static R ok(String message) {
+        R r = new R();
+        r.setResult(1);
+        r.setCode(ResultCode.SUCCESS.getCode());
+        r.setMessage(StringUtils.hasText(message)? message:ResultCode.SUCCESS.getMessage());
+        return r;
+    }
+
+
     // 通用返回失败，未知错误
     public static R error() {
         R r = new R();
@@ -52,11 +64,22 @@ public class R<T> implements Serializable {
     }
 
 
-    public R ResultCode(ResultCode result) {
+    public static R error (Exception e) {
+        R r = new R();
+        r.setResult(2);
 
-        this.setCode(result.getCode());
-        this.setMessage(result.getMessage());
-        return this;
+        if(e instanceof BusinException) {
+            BusinException be = (BusinException) e;
+            r.setCode(be.getCode());
+            r.setMessage(be.getMsg());
+        }else if(e instanceof NullPointerException){
+            r.setCode(ResultCode.ERROR_INTERNAL_SERVER.getCode());
+            r.setMessage(ResultCode.ERROR_INTERNAL_SERVER.getMessage());
+        }else{
+            r.setCode(ResultCode.ERROR_UNKNOWN.getCode());
+            r.setMessage(ResultCode.ERROR_UNKNOWN.getMessage());
+        }
+        return r;
     }
 
     /**------------使用链式编程，返回类本身-----------**/
@@ -66,27 +89,6 @@ public class R<T> implements Serializable {
         this.setData(data);
         return this;
     }
-
-
-
-    // 自定义状态信息
-    public R message(String message) {
-        this.setMessage(message);
-        return this;
-    }
-
-    // 自定义状态码
-    public R code(Integer code) {
-        this.setCode(code);
-        return this;
-    }
-
-    // 自定义返回结果
-    public R result(Integer result) {
-        this.setResult(result);
-        return this;
-    }
-
 
     private void setResult(Integer result) {
         this.result = result;

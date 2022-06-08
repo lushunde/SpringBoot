@@ -11,5 +11,7 @@ import com.lushunde.springboot.model.User;
  **/
 
 public interface UserService {
-    User queryUserByUserId(Integer userId);
+    User queryUserByUserId(Integer userId) throws Exception;
+
+
 }

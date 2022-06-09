@@ -9,4 +9,5 @@ package com.lushunde.springboot.config.constant;
  **/
 
 public class Constants {
+    public static final String TRACE_ID = "traceId";
 }

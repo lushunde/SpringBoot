@@ -13,6 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 public class Application {
 
+
+
 	public static void main(String[] args) {
 
 		MDC.put("traceId", TraceIdUtil.getTraceId());
@@ -21,7 +23,6 @@ public class Application {
 
 		log.info("启动完成....................................");
 	}
-
 
 
 }

@@ -17,6 +17,13 @@ public enum ExceptionEnum {
     NOT_FOUND(404, "请求的资源找不到!"),
 
     INTERNAL_SERVER_ERROR(500, "服务器内部错误!"),
+
+
+    QUARTZ_INIT_ERROR(500100, "初始化定时调度管理类出错"),
+    QUARTZ_DESTROY_ERROR(500101, "关闭定时调度管理类出错"),
+    QUARTZ_GET_SCHEDULER_ERROR(500102, "获取scheduler出错"),
+    QUARTZ_TRIGGER_FOUNT_ERROR(500102, "trigger已经存在，不能添加"),
+
     SERVICE_UNAVAILABLE(503, "服务器正忙,请稍后再试!"),
     UNKNOWN(10000, "未知异常!");
 
